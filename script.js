@@ -3,7 +3,8 @@ let inputTask = document.querySelector('#todo-input');
 let deleteBtn = document.querySelector('.delete-btn');
 let todoTaskcontainer = document.querySelector('#todo-list');
 let container = document.querySelector('.todo-container')
-// let li = document.querySelector('li')
+// let li = document.querySelector('li');
+//i had written this code on github
 
 function getStorage() {
     todoTaskcontainer.innerHTML = localStorage.getItem('task')
