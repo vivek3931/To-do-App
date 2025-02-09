@@ -33,6 +33,19 @@ A simple and interactive To-Do app built using HTML, CSS, and JavaScript. This a
 └── README.md       # Documentation
 ```
 
+## 📸 Preview
+
+![Project Screenshot](./img/todo-ss.png)
+
+## 🚀 Live Demo
+
+🔗 [Check it out here](https://vivek-todo-app.netlify.app/)
+
+## 📬 Contact
+
+📧 Email: viveks3931@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/vivek3931/) | [GitHub](https://github.com/vivek3931) 
+
 ## Future Enhancements
 - Add local storage support
 - Implement categories and due dates
