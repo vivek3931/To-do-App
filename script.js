@@ -3,8 +3,8 @@ let inputTask = document.querySelector('#todo-input');
 let deleteBtn = document.querySelector('.delete-btn');
 let todoTaskcontainer = document.querySelector('#todo-list');
 let container = document.querySelector('.todo-container')
-// let li = document.querySelector('li');
-//i had written this code on github
+// let li = document.querySelector('li')
+// let taskList = document.createElement('li');
 
 function getStorage() {
     todoTaskcontainer.innerHTML = localStorage.getItem('task')
@@ -20,30 +20,20 @@ addBtn.addEventListener('click', () => {
 
     }
     else {
+        // taskList.contentEditable = false;
         let taskList = document.createElement('li');
         let trash = document.createElement('i');
-        trash.className = 'fas fa-trash'
+        let edit = document.createElement('i');
+        trash.className = 'fas fa-trash';
         taskList.className = 'todo-list li';
+        edit.className = 'fa-regular fa-pen-to-square edit';
         let inputValue = inputTask.value;
         taskList.textContent = inputValue;
+        taskList.appendChild(edit);
         taskList.appendChild(trash);
         todoTaskcontainer.appendChild(taskList);
         inputTask.value = '';
-
-        // let tasks = document.querySelectorAll('#todo-list li');
-        // // let taskExists = false;
-        // tasks.forEach(task => {
-        //     if (task.innerText.includes(inputTask.value)) {
-        //         alert("task has already added");
-        //         taskList.style.display = 'none'
-        //     }
-        //     else {
-        //         todoTaskcontainer.appendChild(taskList);
-        //         inputTask.innerText = ''
-        //         setStorage();
-
-        //     }
-        // });
+        setStorage();
 
     }
 
@@ -56,11 +46,14 @@ inputTask.addEventListener('keydown', function (event) {
         } else {
             let taskList = document.createElement('li');
             let trash = document.createElement('i');
+            let edit = document.createElement('i');
+            edit.className = 'fa-regular fa-pen-to-square edit';
             trash.className = 'fas fa-trash';
             taskList.className = 'todo-list li';
             let inputValue = inputTask.value;
             taskList.textContent = inputValue;
             taskList.appendChild(trash);
+            taskList.appendChild(edit);
             todoTaskcontainer.appendChild(taskList);
             inputTask.value = '';
             setStorage();
@@ -68,9 +61,21 @@ inputTask.addEventListener('keydown', function (event) {
     }
 });
 todoTaskcontainer.addEventListener('click', function (e) {
-    if (e.target.tagName === 'I') {
+    if (e.target.className === 'fas fa-trash') {
         e.target.parentElement.remove();
         setStorage();
+    } else if (e.target.className === 'fa-regular fa-pen-to-square edit') {
+        let taskItem = e.target.parentElement;
+        let originalContent = taskItem.textContent;
+        taskItem.contentEditable = true;
+        taskItem.focus();
+        taskItem.addEventListener('blur', function () {
+            taskItem.contentEditable = false;
+            if (taskItem.textContent.trim() === '') {
+                taskItem.textContent = originalContent;
+            }
+            setStorage();
+        }, { once: true });
     }
-
-})
+}
+)
